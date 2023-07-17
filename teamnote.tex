@@ -1,0 +1,403 @@
+  
+\documentclass[8pt,landscape,a4paper,twocolumn]{article}
+
+\setlength{\columnsep}{5pt}
+
+\usepackage[left=0.2cm, right=0.2cm, top=1cm, bottom=1.2cm, headsep=0.2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fontspec}
+\usepackage{kotex}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{comment}
+\usepackage{import}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{array}
+\usepackage[normal]{engord}
+\usepackage[svgnames,table]{xcolor}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{KU - EasyPeasy}
+
+\setmonofont[
+    BoldFont = consolab.ttf,
+    ItalicFont = consolai.ttf
+]{consola.ttf}
+\setmainhangulfont{NanumMyeongjo}
+\setlength\parindent{0pt}
+\usepackage[parfill]{parskip}
+
+\definecolor{dkgrey}{RGB}{127, 127, 127}
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    breakindent=1.1em
+%    numbers=left,
+%    numberstyle=\footnotesize\ttfamily\color{dkgrey},
+%    numbersep=5pt
+%    frame=trbl
+}
+
+\lstdefinestyle{mycpp}{
+  language=[GNU]C++,
+  keywordstyle=\color{blue},
+  commentstyle=\itshape\color{purple!40!black},
+  stringstyle=\color{orange},
+}
+\lstdefinestyle{myjava}{
+  language=Java,
+  keywordstyle=\color{blue},
+  commentstyle=\itshape\color{purple!40!black},
+  stringstyle=\color{orange},
+}
+
+\begin{document}
+\tableofcontents
+
+
+\section{Setting}
+
+\subsection{Default code}
+\lstinputlisting[style=mycpp]{src/setting/defaultcode.cpp}
+
+\subsection{SIMD}
+\lstinputlisting[style=mycpp]{src/setting/SIMD.cpp}
+
+
+\section{Math}
+
+\subsection{Basic Arithmetic}
+\lstinputlisting[style=mycpp]{src/math/basic-arithmetic.cpp}
+
+\subsection{Sieve Methods : Prime, Divisor, Euler phi}
+\lstinputlisting[style=mycpp]{src/math/sieve.cpp}
+
+\subsection{Primality Test}
+\lstinputlisting[style=mycpp]{src/math/primality-test.cpp}
+
+\subsection{Integer Factorization (Pollard's rho)}
+\lstinputlisting[style=mycpp]{src/math/pollard-rho.cpp}
+
+\subsection{Chinese Remainder Theorem}
+\lstinputlisting[style=mycpp]{src/math/chinese-remainder.cpp}
+
+\subsection{Modular Equation}
+
+$x \equiv a \pmod{m}$, $x \equiv b \pmod{n}$을 만족시키는 $x$를 구하는 방법.
+
+$m$과 $n$을 소인수분해한 후 소수의 제곱꼴의 합동식들로 각각 쪼갠다.
+이 때 특정 소수에 대하여 모순이 생기면 불가능한 경우고,
+모든 소수에 대해서 모순이 생기지 않으면 전체 식을 CRT로 합치면 된다. 이제
+$x \equiv x_1 \pmod{p^{k_1}}$과 $x \equiv x_2 \pmod{p^{k_2}}$가
+모순이 생길 조건은 $k_1 \leq k_2$라고 했을 때,
+$x_1 \not\equiv x_2 \pmod{p^{k_1}}$인 경우이다.
+모순이 생기지 않았을 때 답을 구하려면 
+CRT로 합칠 때 $x \equiv x_2 \pmod{p^{k_2}}$만을 남기고 합쳐주면 된다.
+
+\subsection{Rational Number Class}
+\lstinputlisting[style=mycpp]{src/math/rational.cpp}
+
+\subsection{Catalan, Derangement, Partition, 2nd Stirling}
+$C_n = \frac{1}{n + 1} \binom{2n}{n}, C_0 = 1, C_{n + 1} = \sum_{i=0}^{n} C_i C_{n-i},  C_{n + 1} = \frac{2(2n+1)}{n+2} C_n$
+
+$D_n = (n-1)(D_{n-1} + D_{n-2})=n! \sum_{i=1}^n \frac{(-1)^{i+1}}{i!}$
+
+$ P(n) =\sum_{k \in \mathbb{Z}\setminus\{0\}}^{}
+    (-1)^{k+1} P(n-k(3k-1)/2) $
+
+$= P(n-1) + P(n-2)-P(n-5)-P(n-7) +P(n-12) +P(n-15) - P(n-22) -\cdots$
+
+$P(n,k)=P(n-1,k-1)+P(n-k,k)$, $S(n,k)=S(n-1,k-1)+k\cdot S(n-1,k)$
+
+\subsection{Burnside's Lemma}
+
+경우의 수를 세는데, 특정 transform operation(회전, 반사, ..)해서 같은 경우들은 하나로 친다.
+전체 경우의 수는?
+
+- 각 operation마다 이 operation을 했을 때 변하지 않는 경우의 수를 센다
+(단, ``아무것도 하지 않는다''라는 operation도 있어야 함!)
+
+- 전체 경우의 수를 더한 후, operation의 수로 나눈다. (답이 맞다면 항상 나누어 떨어져야 한다)
+
+\subsection{Kirchoff's Theorem}
+
+그래프의 스패닝 트리의 개수를 구하는 정리.
+
+무향 그래프의 Laplacian matrix $L$를 만든다. 이것은 (정점의 차수 대각 행렬) - (인접행렬)이다.
+$L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/열이든 관계 없다.
+그래프의 스패닝 트리의 개수는 $det(L')$이다.
+
+\subsection{Lucas Theorem}
+\lstinputlisting[style=mycpp]{src/math/lucas-theorem.cpp}
+
+\subsection{Fast Fourier Transform}
+\lstinputlisting[style=mycpp]{src/math/fft.cpp}
+
+\subsection{Matrix Operations}
+\lstinputlisting[style=mycpp]{src/math/matrix-operations.cpp}
+
+\subsection{Gaussian Elimination}
+\lstinputlisting[style=mycpp]{src/math/gaussian.cpp}
+
+\subsection{Simplex Algorithm}
+\lstinputlisting[style=mycpp]{src/math/simplex.cpp}
+
+\subsection{Nim Game}
+
+Nim Game의 해법 : 모두 XOR했을 때 $0$이 아니면 첫번째, $0$이면 두번째 플레이어가 승리.
+
+Grundy Number : XOR(MEX({next state grundy}))
+
+Subtraction Game : 한 번에 $k$개까지의 돌만 가져갈 수 있는 경우,
+각 더미의 돌의 개수를 $k + 1$로 나눈 나머지를 XOR 합하여 판단한다.
+
+Index-k Nim : 한 번에 최대 k개의 더미를 골라 각각의 더미에서 아무렇게나 돌을
+제거할 수 있을 때, 각 binary digit에 대하여 합을 $k + 1$로 나눈 나머지를 계산한다.
+만약 이 나머지가 모든 digit에 대하여 $0$이라면 두번째, 하나라도 $0$이 아니라면
+첫번째 플레이어가 승리.
+
+% \subsection{Extended Euclidean Algorithm}
+% \lstinputlisting[style=mycpp]{src/math/eea.cpp}
+
+\subsection{Permutation and Combination}
+\lstinputlisting[style=mycpp]{src/math/permutation.cpp}
+\lstinputlisting[style=mycpp]{src/math/combination.cpp}
+
+\subsection{Lifting The Exponent}
+For any integers $x$, $y$ a positive integer $n$, and a prime number $p$ such that $p \nmid x$ and $p \nmid y$, the following statements hold:
+
+\begin{itemize}
+    \item When $p$ is odd:
+    \begin{itemize}
+        \item If $p \mid x-y$, then $\nu_p(x^n-y^n) = \nu_p(x-y)+\nu_p(n)$.
+        \item If $n$ is odd and $p \mid x+y$, then $\nu_p(x^n+y^n) = \nu_p(x+y)+\nu_p(n)$.
+    \end{itemize}
+    \item When $p = 2$:
+    \begin{itemize}
+        \item If $2 \mid x-y$ and $n$ is even, then $\nu_2(x^n-y^n) = \nu_2(x-y)+\nu_2(x+y)+\nu_2(n)-1$.
+        \item If $2 \mid x-y$ and $n$ is odd, then $\nu_2(x^n-y^n) = \nu_2(x-y)$.
+        \item Corollary:
+        \begin{itemize}
+            \item If $4 \mid x-y$, then $\nu_2(x+y)=1$ and thus $\nu_2(x^n-y^n) = \nu_2(x-y)+\nu_2(n)$.
+        \end{itemize}
+    \end{itemize}
+    \item For all $p$:
+    \begin{itemize}
+        \item If $\gcd(n,p) = 1$ and $p \mid x-y$, then $\nu_p(x^n-y^n) = \nu_p(x-y)$.
+        \item If $\gcd(n,p) = 1$, $p \mid x+y$ and $n$ odd, then $\nu_p(x^n+y^n) = \nu_p(x+y)$.
+    \end{itemize}
+\end{itemize}
+\subsection{Useful primes}
+
+$10\,007$ , $10\,009$ , $10\,111$ , $31\,567$ , $70\,001$ , $1\,000\,003$ , $1\,000\,033$ , $4\,000\,037$ , $99\,999\,989$ , $999\,999\,937$ , $1\,000\,000\,007$ , $1\,000\,000\,009$ , $9\,999\,999\,967$ , $99\,999\,999\,977$
+
+\section{Data Structure}
+
+\subsection{Order statistic tree(Policy Based Data Structure)}
+\lstinputlisting[style=mycpp]{src/data-structure/order-statistic-tree.cpp}
+
+\subsection{Fenwick Tree}
+\lstinputlisting[style=mycpp]{src/data-structure/fenwick-tree.cpp}
+
+\subsection{Segment Tree with Lazy Propagation}
+\lstinputlisting[style=mycpp]{src/data-structure/segtree-lazyprop.cpp}
+
+\subsection{금광 Segment Tree}
+\lstinputlisting[style=mycpp]{src/data-structure/goldenmine-segment.cpp}
+
+\subsection{Persistent Segment Tree}
+\lstinputlisting[style=mycpp]{src/data-structure/persistent-segtree.cpp}
+
+\subsection{Splay Tree}
+\lstinputlisting[style=mycpp]{src/data-structure/splay-tree.cpp}
+
+\subsection{Bitset to Set}
+\lstinputlisting[style=mycpp]{src/data-structure/bitset-to-set.cpp}
+
+\section{DP}
+\subsection{Longest Increasing Sequence}
+\lstinputlisting[style=mycpp]{src/dp/lis.cpp}
+
+\subsection{Convex Hull Optimization}
+$O(n^{2}) \to O(n\log{n})$
+
+DP 점화식 꼴
+
+$D[i] = \max_{j<i}( D[j] + b[j] * a[i] ) \phantom{1} (b[k] \leq b[k+1])$
+
+$D[i] = \min_{j<i}( D[j] + b[j] * a[i] ) \phantom{1} (b[k] \geq b[k+1])$
+
+특수조건) $a[i] \leq a[i+1]$ 도 만족하는 경우, 마지막 쿼리의 위치를 저장해두면 이분검색이 필요없어지기 때문에 amortized $O(n)$ 에 해결할 수 있음
+
+\lstinputlisting[style=mycpp]{src/dp/convex-hull-trick-linear.cpp}
+
+\subsection{Divide \& Conquer Optimization}
+
+$O(kn^{2}) \to O(kn\log{n})$
+
+조건 1) DP 점화식 꼴
+
+$D[t][i] = \min_{j<i}( D[t-1][j] + C[j][i] )$
+
+조건 2) $A[t][i]$는 $D[t][i]$의 답이 되는 최소의 $j$라 할 때, 아래의 부등식을 만족해야 함
+
+$A[t][i] \leq A[t][i+1]$
+
+조건 2-1) 비용$C$가 다음의 사각부등식을 만족하는 경우도 조건 2)를 만족하게 됨
+
+$C[a][c] + C[b][d] \leq C[a][d] + C[b][c] \phantom{1} (a \leq b \leq c \leq d)$
+
+\lstinputlisting[style=mycpp]{src/dp/dnc-optimization.cpp}
+
+\subsection{Knuth Optimization}
+
+$O(n^{3}) \to O(n^{2})$
+
+조건 1) DP 점화식 꼴
+
+$D[i][j] = \min_{i<k<j}( D[i][k] + D[k][j] ) + C[i][j]$
+
+조건 2) 사각 부등식
+
+$C[a][c] + C[b][d] \leq C[a][d] + C[b][c] \phantom{1} (a \leq b \leq c \leq d)$
+
+조건 3) 단조성
+
+$C[b][c] \leq C[a][d] \phantom{1} (a \leq b \leq c \leq d)$
+
+결론) 조건 2, 3을 만족한다면  $A[i][j]$를 $D[i][j]$의 답이 되는 최소의 $k$라 할 때, 아래의 부등식을 만족하게 됨
+
+$A[i][j-1] \leq A[i][j] \leq A[i+1][j]$
+
+3중 루프를 돌릴 때 위 조건을 이용하면 최종적으로 시간복잡도가 $O(n^{2})$ 이 됨
+
+\lstinputlisting[style=mycpp]{src/dp/knuth-optimization.cpp}
+
+\subsection{Bitset Optimization}
+\lstinputlisting[style=mycpp]{src/dp/bitset.cpp}
+
+\section{Graph}
+
+\subsection{SCC}
+\lstinputlisting[style=mycpp]{src/graph/scc.cpp}
+
+\subsection{2-SAT}
+boolean variable $b_{i}$ 마다 $b_{i}$를 나타내는 정점, $\neg b_{i} $를 나타내는 정점 2개를 만듦. 각 clause $b_{i} \lor b_{j}$ 마다 $\neg b_{i} \to b_{j}$, $\neg b_{j} \to b_{i}$ 이렇게 edge를 이어줌. 그렇게 만든 그래프에서 SCC를 다 구함. 어떤 SCC 안에 $b_{i}$ 와 $\neg b_{i}$가 같이 포함되어있다면 해가 존재하지 않음. 아니라면 해가 존재함. 해가 존재할 때 구체적인 해를 구하는 방법. 위에서 SCC를 구하면서 SCC DAG를 만들어준다. 거기서 위상정렬을 한 후, 앞에서부터 SCC를 하나씩 봐준다. 현재 보고있는 SCC에 $b_{i}$가 속해있는데 얘가 $\neg b_{i}$보다 먼저 등장했다면 $b_{i} = \mathrm{false}$, 반대의 경우라면 $b_{i} = \mathrm{true}$, 이미 값이 assign되었다면 pass.
+
+\subsection{BCC, Cut vertex, Bridge}
+\lstinputlisting[style=mycpp]{src/graph/bcc.cpp}
+
+\subsection{Block-cut Tree}
+
+각 BCC 및 cut vertex가 block-cut tree의 vertex가 되며, BCC와 그 BCC에 속한 cut vertex 사이에 edge를 이어주면 된다.
+
+\subsection{Dijkstra}
+\lstinputlisting[style=mycpp]{src/graph/dijkstra.cpp}
+
+\subsection{Bellman-Ford Algorithm}
+\lstinputlisting[style=mycpp]{src/graph/bellman.cpp}
+
+\subsection{Floyd-Warshall Algorithm}
+\lstinputlisting[style=mycpp]{src/graph/floyd.cpp}
+
+\subsection{Shortest Path Faster Algorithm}
+\lstinputlisting[style=mycpp]{src/graph/spfa.cpp}
+
+\subsection{Union Find}
+\lstinputlisting[style=mycpp]{src/graph/union-find.cpp}
+
+\subsection{Minimum Spanning Tree}
+\lstinputlisting[style=mycpp]{src/graph/MST.cpp}
+
+\subsection{Lowest Common Ancestor}
+\lstinputlisting[style=mycpp]{src/graph/lca.cpp}
+
+\subsection{Heavy-Light Decomposition}
+\lstinputlisting[style=mycpp]{src/graph/hld.cpp}
+
+\subsection{Bipartite Matching (Hopcroft-Karp)}
+\lstinputlisting[style=mycpp]{src/graph/bipartite-matching-hopcroft.cpp}
+
+\subsection{Maximum Flow (Dinic)}
+\lstinputlisting[style=mycpp]{src/graph/maxflow-dinic.cpp}
+
+\subsection{Maximum Flow with Edge Demands}
+
+그래프 $G=(V,E)$ 가 있고 source $s$와 sink $t$가 있다. 각 간선마다 $d(e) \leq f(e) \leq c(e)$ 를 만족하도록 flow $f(e)$를 흘려야 한다. 이 때의 maximum flow를 구하는 문제다.
+
+먼저 모든 demand를 합한 값 $D$를 아래와 같이 정의한다.
+
+\begin{displaymath}
+D = \sum_{(u \to v) \in E} d(u \to v)
+\end{displaymath}
+
+이제 $G$ 에 몇개의 정점과 간선을 추가하여 새로운 그래프 $G'=(V',E')$ 을 만들 것이다. 먼저 새로운 source $s'$ 과 새로운 sink $t'$ 을 추가한다. 그리고 $s'$에서 $V$의 모든 점마다 간선을 이어주고, $V$의 모든 점에서 $t'$로 간선을 이어준다.
+
+새로운 capacity function $c'$을 아래와 같이 정의한다.
+
+\begin{enumerate}
+\item $V$의 점 $v$에 대해 $c'(s' \to v) = \sum_{u \in V} d(u \to v)$ , $c'(v \to t') = \sum_{w \in V} d(v \to w)$
+\item $E$의 간선 $u \to v$에 대해 $c'(u \to v) = c(u \to v) - d(u \to v)$
+\item $c'(t \to s) = \infty$
+\end{enumerate}
+
+이렇게 만든 새로운 그래프 $G'$에서 maximum flow를 구했을 때 그 값이 $D$라면 원래 문제의 해가 존재하고, 그 값이 $D$가 아니라면 원래 문제의 해는 존재하지 않는다.
+
+위에서 maximum flow를 구하고 난 상태의 residual graph 에서 $s'$과 $t'$을 떼버리고 $s$에서 $t$사이의 augument path 를 계속 찾으면 원래 문제의 해를 구할 수 있다.
+
+\lstinputlisting[style=mycpp]{src/graph/maxflow-ed.cpp}
+
+\subsection{Min-cost Maximum Flow}
+\lstinputlisting[style=mycpp]{src/graph/mcmf.cpp}
+
+\subsection{General Min-cut (Stoer-Wagner)}
+\lstinputlisting[style=mycpp]{src/graph/general-mincut-stoer-wagner.cpp}
+
+\subsection{Hungarian Algorithm}
+\lstinputlisting[style=mycpp]{src/graph/hungarian.cpp}
+
+\section{Geometry}
+
+\subsection{Basic Operations}
+\lstinputlisting[style=mycpp]{src/geometry/basic-operations.cpp}
+
+\subsection{Convex Hull}
+\lstinputlisting[style=mycpp]{src/geometry/convex-hull.cpp}
+
+\subsection{Rotating Calipers}
+\lstinputlisting[style=mycpp]{src/geometry/rotating-calipers.cpp}
+
+\subsection{Point in Polygon Test}
+\lstinputlisting[style=mycpp]{src/geometry/point-in-polygon.cpp}
+
+\subsection{Polygon Cut}
+\lstinputlisting[style=mycpp]{src/geometry/polygon-cut.cpp}
+
+\subsection{Pick's theorem}
+
+격자점으로 구성된 simple polygon에 대해 $i$는 polygon 내부의 격자수, $b$는 polygon 선분 위 격자수, $A$는 polygon 넓이라고 할 때 $A = i + \frac{b}{2} - 1$.
+
+\section{String}
+
+\subsection{KMP}
+\lstinputlisting[style=mycpp]{src/string/kmp.cpp}
+
+\subsection{Z Algorithm}
+\lstinputlisting[style=mycpp]{src/string/z.cpp}
+
+\subsection{Aho-Corasick}
+\lstinputlisting[style=mycpp]{src/string/aho-corasick.cpp}
+
+\subsection{Suffix Array with LCP}
+\lstinputlisting[style=mycpp]{src/string/suffix-array-lcp.cpp}
+
+\subsection{Manacher's Algorithm}
+\lstinputlisting[style=mycpp]{src/string/manacher.cpp}
+
+\end{document}
