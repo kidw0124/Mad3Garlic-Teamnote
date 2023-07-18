@@ -1,61 +1,45 @@
-#include <algorithm>
-#include <vector>
-#include <queue>
-using namespace std;
-
-struct AhoCorasick
-{
-    const int alphabet;
-    struct node {
-        node() {}
-        explicit node(int alphabet) : next(alphabet) {}
-        vector<int> next, report;
-        int back = 0, output_link = 0;
-    };
-    int maxid = 0;
-    vector<node> dfa;
-    explicit AhoCorasick(int alphabet) : alphabet(alphabet), dfa(1, node(alphabet)) { }
-    template<typename InIt, typename Fn> void add(int id, InIt first, InIt last, Fn func) {
-        int cur = 0;
-        for ( ; first != last; ++first) {
-            auto s = func(*first);
-            if (auto next = dfa[cur].next[s]) cur = next;
-            else {
-                cur = dfa[cur].next[s] = (int)dfa.size();
-                dfa.emplace_back(alphabet);
-            }
-        }
-        dfa[cur].report.push_back(id);
-        maxid = max(maxid, id);
+struct aho_corasick_with_trie {
+  const ll MAXN = 100005, MAXC = 26;
+  ll trie[MAXN][MAXC], fail[MAXN], term[MAXN], piv = 0;
+  void init(vector<string> &v) {
+    memset(trie, 0, sizeof(trie));
+    memset(fail, 0, sizeof(fail));
+    memset(term, 0, sizeof(term));
+    piv = 0;
+    for (auto &i : v) {
+      ll p = 0;
+      for (auto &j : i) {
+        if (!trie[p][j]) trie[p][j] = ++piv;
+        p = trie[p][j];
+      }
+      term[p] = 1;
     }
-    void build() {
-        queue<int> q;
-        vector<char> visit(dfa.size());
-        visit[0] = 1;
-        q.push(0);
-        while(!q.empty()) {
-            auto cur = q.front(); q.pop();
-            dfa[cur].output_link = dfa[cur].back;
-            if (dfa[dfa[cur].back].report.empty())
-                dfa[cur].output_link = dfa[dfa[cur].back].output_link;
-            for (int s = 0; s < alphabet; s++) {
-                auto &next = dfa[cur].next[s];
-                if (next == 0) next = dfa[dfa[cur].back].next[s];
-                if (visit[next]) continue;
-                if (cur) dfa[next].back = dfa[dfa[cur].back].next[s];
-                visit[next] = 1;
-                q.push(next);
-            }
-        }
+    queue<ll> que;
+    for (ll i = 0; i < MAXC; i++) {
+      if (trie[0][i]) que.push(trie[0][i]);
     }
-    template<typename InIt, typename Fn> vector<int> countMatch(InIt first, InIt last, Fn func) {
-        int cur = 0;
-        vector<int> ret(maxid+1);
-        for (; first != last; ++first) {
-            cur = dfa[cur].next[func(*first)];
-            for (int p = cur; p; p = dfa[p].output_link)
-                for (auto id : dfa[p].report) ret[id]++;
+    while (!que.empty()) {
+      ll x = que.front();
+      que.pop();
+      for (ll i = 0; i < MAXC; i++) {
+        if (trie[x][i]) {
+          ll p = fail[x];
+          while (p && !trie[p][i]) p = fail[p];
+          p = trie[p][i];
+          fail[trie[x][i]] = p;
+          if (term[p]) term[trie[x][i]] = 1;
+          que.push(trie[x][i]);
         }
-        return ret;
+      }
     }
+  }
+  bool query(string &s) {
+    ll p = 0;
+    for (auto &i : s) {
+      while (p && !trie[p][i]) p = fail[p];
+      p = trie[p][i];
+      if (term[p]) return 1;
+    }
+    return 0;
+  }
 };
