@@ -7,7 +7,20 @@
 		"deque": "cpp",
 		"list": "cpp",
 		"vector": "cpp",
-		"xstring": "cpp"
+		"xstring": "cpp",
+		"exception": "cpp",
+		"functional": "cpp",
+		"ios": "cpp",
+		"istream": "cpp",
+		"memory": "cpp",
+		"ostream": "cpp",
+		"queue": "cpp",
+		"streambuf": "cpp",
+		"tuple": "cpp",
+		"unordered_map": "cpp",
+		"utility": "cpp",
+		"xhash": "cpp",
+		"xiosbase": "cpp"
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
