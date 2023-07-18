@@ -1,6 +1,8 @@
 struct sieve {
   const ll MAXN = 101010;
   vector<ll> sp, e, phi, mu, tau, sigma, primes;
+  // sp : smallest prime factor, e : exponent, phi : euler phi, mu : mobius
+  // tau : num of divisors, sigma : sum of divisors
   sieve(ll sz) {
     sp.resize(sz + 1), e.resize(sz + 1), phi.resize(sz + 1), mu.resize(sz + 1),
         tau.resize(sz + 1), sigma.resize(sz + 1);
