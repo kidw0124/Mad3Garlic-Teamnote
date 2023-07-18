@@ -1,5 +1,4 @@
 {
-	"C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": null,
 	"editor.tabSize": 2,
@@ -12,5 +11,13 @@
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"C_Cpp.formatting": "clangFormat",
+	"C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 2, UseTab : Never}",
+	"[cpp]": {
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
+
+	"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, UseTab : Never}",
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine"
 }
