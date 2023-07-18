@@ -26,7 +26,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"C_Cpp.formatting": "clangFormat",
-	"C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 2, UseTab : Never, ColumnLimit: 90}",
+	"C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 2, UseTab : Never, ColumnLimit: 89}",
 	"[cpp]": {
 		"editor.defaultFormatter": "ms-vscode.cpptools"
 	},
