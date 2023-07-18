@@ -1,4 +1,3 @@
-using ll = long long;
 struct segment {
 #ifdef ONLINE_JUDGE
   const int TSIZE = 1 << 20;  // always 2^k form && n <= TSIZE
