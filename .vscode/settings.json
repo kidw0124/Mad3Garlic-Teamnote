@@ -1,0 +1,16 @@
+{
+	"C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": null,
+	"editor.tabSize": 2,
+	"files.associations": {
+		"*.cpp": "cpp",
+		"deque": "cpp",
+		"list": "cpp",
+		"vector": "cpp",
+		"xstring": "cpp"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}
