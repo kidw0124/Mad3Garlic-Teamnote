@@ -1,43 +1,30 @@
 ll inf = 2e18;
-
-struct Line
-{
+struct Line {
 	ll a, b;
 	ll get(ll x)
 	{
 		return a * x + b;
 	}
 };
-
-struct Node
-{
+struct Node {
 	int l, r; //child
 	ll s, e; //range
 	Line line;
 };
-
-struct Li_Chao
-{
+struct Li_Chao {
 	vector<Node> tree;
-
-	void init(ll s, ll e)
-	{
+	void init(ll s, ll e) {
 		tree.push_back({-1, -1, s, e, {0, -inf}});
 	}
-
-	void update(int node, Line v)
-	{
+	void update(int node, Line v) {
 		ll s = tree[node].s, e = tree[node].e, m;
 		m = (s + e) >> 1;
-
 		Line low = tree[node].line, high = v;
 		if (low.get(s) > high.get(s))swap(low, high);
-
 		if (low.get(e) <= high.get(e)) {
 			tree[node].line = high;
 			return;
 		}
-
 		if (low.get(m) < high.get(m)) {
 			tree[node].line = high;
 			if (tree[node].r == -1) {
