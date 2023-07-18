@@ -99,7 +99,7 @@ vector<Point> circle_circle(const Circle& a, const Circle& b) {
   ld tmp = (bb - aa) / 2.0;
   Point cdiff = b.center - a.center;
   if (diff(cdiff.x, 0) == 0) {
-    if (diff(cdiff.y, 0) == 0) return result;  // if (diff(a.r, b.r) == 0): same circle
+    if (diff(cdiff.y, 0) == 0) return result;
     return circle_line(a, Line{Point{0, tmp / cdiff.y}, Point{1, 0}});
   }
   return circle_line(a, Line{Point{tmp / cdiff.x, 0}, Point{-cdiff.y, cdiff.x}});
