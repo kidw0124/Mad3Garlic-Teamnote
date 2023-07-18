@@ -18,3 +18,9 @@ vector<ll> berlekampMassey(vector<ll> s) {
   for (ll& x : C) x = (mod - x) % mod;
   return C;
 }
+ll guess_nth_term(vector<ll> x, lint n) {
+  if (n < x.size()) return x[n];
+  vector<ll> v = berlekamp_massey(x);
+  if (v.empty()) return 0;
+  return get_nth(v, x, n);
+}
