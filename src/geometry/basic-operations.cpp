@@ -12,12 +12,8 @@ struct Point {
   bool operator==(const Point& rhs) const {
     return diff(x, rhs.x) == 0 && diff(y, rhs.y) == 0;
   }
-  Point operator+(const Point& rhs) const {
-    return Point{x + rhs.x, y + rhs.y};
-  }
-  Point operator-(const Point& rhs) const {
-    return Point{x - rhs.x, y - rhs.y};
-  }
+  Point operator+(const Point& rhs) const { return Point{x + rhs.x, y + rhs.y}; }
+  Point operator-(const Point& rhs) const { return Point{x - rhs.x, y - rhs.y}; }
   Point operator*(ld t) const { return Point{x * t, y * t}; }
 };
 struct Circle {
@@ -27,21 +23,15 @@ struct Circle {
 struct Line {
   Point pos, dir;
 };
-inline ld inner(const Point& a, const Point& b) {
-  return a.x * b.x + a.y * b.y;
-}
-inline ld outer(const Point& a, const Point& b) {
-  return a.x * b.y - a.y * b.x;
-}
+inline ld inner(const Point& a, const Point& b) { return a.x * b.x + a.y * b.y; }
+inline ld outer(const Point& a, const Point& b) { return a.x * b.y - a.y * b.x; }
 inline ll ccw_line(const Line& line, const Point& point) {
   return diff(outer(line.dir, point - line.pos), 0);
 }
 inline ll ccw(const Point& a, const Point& b, const Point& c) {
   return diff(outer(b - a, c - a), 0);
 }
-inline ld dist(const Point& a, const Point& b) {
-  return sqrt(inner(a - b, a - b));
-}
+inline ld dist(const Point& a, const Point& b) { return sqrt(inner(a - b, a - b)); }
 inline ld dist2(const Point& a, const Point& b) { return inner(a - b, a - b); }
 inline ld dist(const Line& line, const Point& point, bool segment = false) {
   ld c1 = inner(point - line.pos, line.dir);
@@ -84,8 +74,7 @@ vector<Point> circle_line(const Circle& circle, const Line& line) {
   ld a = 2 * inner(line.dir, line.dir);
   ld b = 2 * (line.dir.x * (line.pos.x - circle.center.x) +
               line.dir.y * (line.pos.y - circle.center.y));
-  ld c = inner(line.pos - circle.center, line.pos - circle.center) -
-         circle.r * circle.r;
+  ld c = inner(line.pos - circle.center, line.pos - circle.center) - circle.r * circle.r;
   ld det = b * b - 2 * a * c;
   ll pred = diff(det, 0);
   if (pred == 0)
@@ -110,12 +99,10 @@ vector<Point> circle_circle(const Circle& a, const Circle& b) {
   ld tmp = (bb - aa) / 2.0;
   Point cdiff = b.center - a.center;
   if (diff(cdiff.x, 0) == 0) {
-    if (diff(cdiff.y, 0) == 0)
-      return result;  // if (diff(a.r, b.r) == 0): same circle
+    if (diff(cdiff.y, 0) == 0) return result;  // if (diff(a.r, b.r) == 0): same circle
     return circle_line(a, Line{Point{0, tmp / cdiff.y}, Point{1, 0}});
   }
-  return circle_line(a,
-                     Line{Point{tmp / cdiff.x, 0}, Point{-cdiff.y, cdiff.x}});
+  return circle_line(a, Line{Point{tmp / cdiff.x, 0}, Point{-cdiff.y, cdiff.x}});
 }
 Circle circle_from_3pts(const Point& a, const Point& b, const Point& c) {
   Point ba = b - a, cb = c - b;
