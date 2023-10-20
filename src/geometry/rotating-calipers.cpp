@@ -1,5 +1,4 @@
-// get all antipodal pairs
-// O(n)
+// get all antipodal pairs with O(n)
 void antipodal_pairs(vector<Point>& pt) {
   // calculate convex hull
   sort(pt.begin(), pt.end(), [](const Point& a, const Point& b) {

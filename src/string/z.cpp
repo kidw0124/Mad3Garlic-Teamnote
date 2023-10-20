@@ -4,7 +4,6 @@ vector<int> z_func(const seq_t &s) {
     vector<int> z(s.size());
     z[0] = s.size();
     int l = 0, r = 0;
-
     for (int i = 1; i < s.size(); i++) {
         if (i > r) {
             int j;
@@ -18,6 +17,5 @@ vector<int> z_func(const seq_t &s) {
             z[i] = r - i + j; l = i; r += j - 1;
         }
     }
-
     return z;
 }
