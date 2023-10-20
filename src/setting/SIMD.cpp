@@ -1,5 +1,3 @@
-#pragma GCC optimize ("O3,unroll-loops")
-#pragma GCC target ("avx,avx2,fma")
 #include <immintrin.h>
 alignas(32) int A[8]{ 1, 2, 3, 1, 2, 3, 1, 2 }, B[8]{ 1, 2, 3, 4, 5, 6, 7, 8 };
 alignas(32) int C[8]; // alignas(bit size of <type>) <type> var[256/(bit size)]
