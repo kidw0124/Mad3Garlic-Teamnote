@@ -16,6 +16,7 @@
 \usepackage{wrapfig}
 \usepackage{url}
 \usepackage{array}
+\usepackage{titlesec}
 \usepackage[normal]{engord}
 \usepackage[svgnames,table]{xcolor}
 
@@ -31,6 +32,10 @@
 \setmainhangulfont{NanumMyeongjo}
 \setlength\parindent{0pt}
 \usepackage[parfill]{parskip}
+\setlength\parskip{0pt}
+\setlength\baselineskip{0pt}
+\titlespacing*{\section}{0pt}{0pt}{2pt}
+\titlespacing*{\subsection}{0pt}{0pt}{1pt}
 
 \definecolor{dkgrey}{RGB}{127, 127, 127}
 
@@ -135,11 +140,20 @@ $L$에서 행과 열을 하나씩 제거한 것을 $L'$라 하자. 어느 행/�
 \subsection{Lucas Theorem}
 \lstinputlisting[style=mycpp]{src/math/lucas-theorem.cpp}
 
-\subsection{Fast Fourier Transform}
+\subsection{FFT(Fast Fourier Transform)}
 \lstinputlisting[style=mycpp]{src/math/fft.cpp}
 
-\subsection{NTT}
+\subsection{NTT(Number Theoretic Transform)}
 \lstinputlisting[style=mycpp]{src/math/ntt.cpp}
+
+$998\,244\,353 = 119 \times 2^{23} + 1$. Primitive root: $3$.
+
+$985\,661\,441 = 235 \times 2^{22} + 1$. Primitive root: $3$.
+
+$1\,012\,924\,417 = 483 \times 2^{21} + 1$. Primitive root: $5$.
+
+\subsection{FWHT(Fast Walsh-Hadamard Transform) and Convolution}
+\lstinputlisting[style=mycpp]{src/math/fwht.cpp}
 
 \subsection{Matrix Operations}
 \lstinputlisting[style=mycpp]{src/math/matrix-operations.cpp}
@@ -195,12 +209,7 @@ For any integers $x$, $y$ a positive integer $n$, and a prime number $p$ such th
         \item If $\gcd(n,p) = 1$, $p \mid x+y$ and $n$ odd, then $\nu_p(x^n+y^n) = \nu_p(x+y)$.
     \end{itemize}
 \end{itemize}
-\subsection{NTT primes}
-$998\,244\,353 = 119 \times 2^{23} + 1$. Primitive root: $3$.
-
-$985\,661\,441 = 235 \times 2^{22} + 1$. Primitive root: $3$.
-
-$1\,012\,924\,417 = 483 \times 2^{21} + 1$. Primitive root: $5$.
+% \subsection{Magic Numbers(Prime Numbers)}
 %$10\,007$ , $10\,009$ , $10\,111$ , $31\,567$ , $70\,001$ , $1\,000\,003$ , $1\,000\,033$ , $4\,000\,037$ , $99\,999\,989$ , $999\,999\,937$ , $1\,000\,000\,007$ , $1\,000\,000\,009$ , $9\,999\,999\,967$ , $99\,999\,999\,977$
 
 \section{Data Structure}
@@ -208,8 +217,14 @@ $1\,012\,924\,417 = 483 \times 2^{21} + 1$. Primitive root: $5$.
 \subsection{Order statistic tree(Policy Based Data Structure)}
 \lstinputlisting[style=mycpp]{src/data-structure/order-statistic-tree.cpp}
 
+\subsection{Rope}
+\lstinputlisting[style=mycpp]{src/data-structure/rope.cpp}
+
 \subsection{Fenwick Tree}
 \lstinputlisting[style=mycpp]{src/data-structure/fenwick-tree.cpp}
+
+\subsection{2D Fenwick Tree}
+\lstinputlisting[style=mycpp]{src/data-structure/2d-fenwick-tree.cpp}
 
 \subsection{Segment Tree with Lazy Propagation}
 \lstinputlisting[style=mycpp]{src/data-structure/segtree-lazyprop.cpp}
