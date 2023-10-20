@@ -1,5 +1,5 @@
 {
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": false,
 	"editor.defaultFormatter": null,
 	"editor.tabSize": 2,
 	"files.associations": {
@@ -20,7 +20,17 @@
 		"unordered_map": "cpp",
 		"utility": "cpp",
 		"xhash": "cpp",
-		"xiosbase": "cpp"
+		"xiosbase": "cpp",
+		"iostream": "cpp",
+		"array": "cpp",
+		"bitset": "cpp",
+		"string_view": "cpp",
+		"initializer_list": "cpp",
+		"ranges": "cpp",
+		"span": "cpp",
+		"stacktrace": "cpp",
+		"regex": "cpp",
+		"valarray": "cpp"
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
