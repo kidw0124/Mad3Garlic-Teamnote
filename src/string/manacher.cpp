@@ -1,5 +1,4 @@
-// find longest palindromic span for each element in str
-// O(|str|)
+// find longest palindromic span for each element in str with O(|str|)
 void manacher(const string& str, int plen[]) {
     int r = -1, p = -1;
     for (int i = 0; i < str.length(); ++i) {

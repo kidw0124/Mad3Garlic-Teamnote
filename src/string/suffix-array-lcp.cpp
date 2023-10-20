@@ -1,8 +1,5 @@
-typedef char T;
-
-// calculates suffix array.
-// O(n*logn)
-vector<int> suffix_array(const vector<T>& in) {
+// calculates suffix array with O(n*logn)
+vector<int> suffix_array(const vector<char>& in) {
     int n = (int)in.size(), c = 0;
     vector<int> temp(n), pos2bckt(n), bckt(n), bpos(n), out(n);
     for (int i = 0; i < n; i++) out[i] = i;
@@ -30,10 +27,8 @@ vector<int> suffix_array(const vector<T>& in) {
     }
     return out;
 }
-
-// calculates lcp array. it needs suffix array & original sequence.
-// O(n)
-vector<int> lcp(const vector<T>& in, const vector<int>& sa) {
+// calculates lcp array. it needs suffix array & original sequence with O(n)
+vector<int> lcp(const vector<char>& in, const vector<int>& sa) {
     int n = (int)in.size();
     if (n == 0) return vector<int>();
     vector<int> rank(n), height(n - 1);

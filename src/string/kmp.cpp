@@ -1,5 +1,4 @@
 typedef vector<int> seq_t;
-
 void calculate_pi(vector<int>& pi, const seq_t& str) {
     pi[0] = -1;
     for (int i = 1, j = -1; i < str.size(); i++) {
@@ -10,7 +9,6 @@ void calculate_pi(vector<int>& pi, const seq_t& str) {
             pi[i] = -1;
     }
 }
-
 // returns all positions matched
 // O(|text|+|pattern|)
 vector<int> kmp(const seq_t& text, const seq_t& pattern) {
