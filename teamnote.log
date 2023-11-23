@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.10.21)  21 OCT 2023 03:15
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.10.21)  24 NOV 2023 04:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -604,12 +604,12 @@ File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
 (./src/math/chinese-remainder.cpp) (./src/math/rational.cpp)
 (./src/math/lucas-theorem.cpp [4]) (./src/math/fft.cpp) (./src/math/ntt.cpp)
 (./src/math/fwht.cpp [5]) (./src/math/matrix-operations.cpp)
-(./src/math/gaussian.cpp [6]) (./src/math/simplex.cpp) [7]
-(./src/data-structure/order-statistic-tree.cpp
-Underfull \vbox (badness 3209) has occurred while \output is active []
+(./src/math/gaussian.cpp [6]) (./src/math/simplex.cpp)
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
-)
-(./src/data-structure/rope.cpp) (./src/data-structure/fenwick-tree.cpp)
+ [7]
+(./src/data-structure/order-statistic-tree.cpp) (./src/data-structure/rope.cpp)
+(./src/data-structure/fenwick-tree.cpp)
 (./src/data-structure/2d-fenwick-tree.cpp [8])
 (./src/data-structure/segtree-lazyprop.cpp)
 (./src/data-structure/persistent-segtree.cpp [9])
@@ -621,19 +621,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [11]) (./src/dp/lis.cpp) (./src/dp/convex-hull-trick-linear.cpp) [12]
 (./src/dp/dnc-optimization.cpp) (./src/dp/knuth-optimization.cpp)
 (./src/dp/bitset.cpp) (./src/dp/Kitamasa.cpp [13])
-(./src/dp/Berlekamp-Massey.cpp) (./src/graph/scc.cpp) (./src/graph/bcc.cpp
-[14]) (./src/graph/dijkstra.cpp) (./src/graph/spfa.cpp)
-(./src/graph/centroid-decomposition.cpp [15]) (./src/graph/lca.cpp)
+(./src/dp/Berlekamp-Massey.cpp) (./src/dp/sosdp.cpp) (./src/graph/scc.cpp)
+[14] (./src/graph/bcc.cpp) (./src/graph/dijkstra.cpp) (./src/graph/spfa.cpp
+[15]) (./src/graph/centroid-decomposition.cpp) (./src/graph/lca.cpp)
 (./src/graph/hld.cpp [16]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
-(./src/graph/bipartite-matching-hopcroft.cpp [17])
-(./src/graph/maxflow-dinic.cpp
+(./src/graph/bipartite-matching-hopcroft.cpp [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18])
-(./src/graph/maxflow-ed.cpp) (./src/graph/mcmf.cpp [19]
+)
+(./src/graph/maxflow-dinic.cpp [18]) (./src/graph/maxflow-ed.cpp)
+(./src/graph/mcmf.cpp [19]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
@@ -641,20 +641,29 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 (./src/geometry/basic-operations.cpp [21]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-)
-(./src/geometry/convex-hull.cpp [22]) (./src/geometry/rotating-calipers.cpp)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22])
+(./src/geometry/convex-hull.cpp) (./src/geometry/rotating-calipers.cpp)
 (./src/geometry/half-plane-intersection.cpp)
 (./src/geometry/point-in-polygon.cpp [23]) (./src/geometry/polygon-cut.cpp)
-(./src/string/kmp.cpp) (./src/string/z.cpp) (./src/string/aho-corasick.cpp
-[24]) (./src/string/suffix-array-lcp.cpp) (./src/string/manacher.cpp) [25]
+(./src/geometry/voronoi.cpp [24]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+(./src/string/kmp.cpp [25]) (./src/string/z.cpp) (./src/string/aho-corasick.cpp
+) (./src/string/suffix-array-lcp.cpp [26]) (./src/string/manacher.cpp) [27
+
+]
 (./teamnote.aux) ) 
 Here is how much of TeX's memory you used:
- 13154 strings out of 481370
- 223820 string characters out of 5926566
- 1217501 words of memory out of 5000000
- 29821 multiletter control sequences out of 15000+600000
+ 13238 strings out of 481370
+ 224751 string characters out of 5926566
+ 1214557 words of memory out of 5000000
+ 29899 multiletter control sequences out of 15000+600000
  534285 words of font info for 63 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  46i,12n,78p,1197b,2559s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on teamnote.pdf (25 pages).
+Output written on teamnote.pdf (27 pages).
